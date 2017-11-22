@@ -1,0 +1,13 @@
+---
+title: "Case Study 2"
+author: "Lizzy Sterling and Casey Martinez"
+date: "12/06/2017"
+output: rmarkdown::github_document
+---
+```{r, echo=TRUE}
+knitr::opts_knit$set(root.dir = '/Users/lizzysterling/Desktop/CaseStudy2/Analysis/Data')
+```
+
+```{r, echo=TRUE}
+Procastination <- read.csv("procastination.csv", header=TRUE)
+```
