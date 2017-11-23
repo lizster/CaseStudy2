@@ -18,4 +18,10 @@ Below is a brief description of each column:
 * `MaritalStatus`: single, married, divorced, separated, etc...  
 * `NumberSons`: number of sons (integer)  
 * `NumberDaughters`: number of daughters (integer)  
-**Figure out what to label the rest of these columns**
+#### The following columns refer to the following procrastination tests:  
+*Decisional Procrastination Scale (DP) Scale:  
+*Adult Inventory of Procrastination (AIP) Scale:   
+*General Procrastination Scale (GP) Scale:  
+*Satisfaction with Life Scale (SWLS)*  Scale:  
+* `DP1`: "I waste a lot of time on trivial matters before getting to the final decisions"
+* `DP2`: "Even after I make a decision I delay acting upon it"
