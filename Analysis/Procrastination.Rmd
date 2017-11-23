@@ -4,10 +4,88 @@ author: "Lizzy Sterling and Casey Martinez"
 date: "12/06/2017"
 output: rmarkdown::github_document
 ---
-```{r, echo=TRUE}
-knitr::opts_knit$set(root.dir = '/Users/lizzysterling/Desktop/CaseStudy2/Analysis/Data')
+
+```{r, echo=TRUE, include=FALSE}
+library(dplyr)
 ```
 
 ```{r, echo=TRUE}
-Procastination <- read.csv("procastination.csv", header=TRUE)
+knitr::opts_knit$set(root.dir = '/Users/lizzysterling/Desktop/CaseStudy2/Analysis/Data')
+```
+We are taking a look at the raw data frame.
+```{r, echo=TRUE}
+#1A
+#Work on fixing the directory so that this does not need to be included
+Procrastination <- read.csv("Procrastination.csv", header=TRUE)
+dim(Procrastination)
+```
+In order to make the data set human-readable, we need to change the column names so that they make more sense.
+```{r, echo=TRUE}
+#1B
+#colnames(Procrastination)
+names(Procrastination)[1:14] <- c("Age", "Gender", "Kids", "Education", "WorkStatus", "AnnualIncome", "Occupation", "OccupationYears", "OccupationMonths", "CommunitySize", "CountryOfResidence", "MaritalStatus", "NumberSons", "NumberDaughers")
+#How do you want to label columns 15:61?
+```
+Now that we know all of the column names, we need to check and make sure all of the values in the columns are accurate.  
+
+First, we need to make the values of `OccupationYears` to integers so that we can determine which years do not makes sense.  
+```{r, echo=TRUE}
+#1C
+Procrastination$OccupationYears <- round(Procrastination$OccupationYears)
+data.frame(unique(Procrastination$OccupationYears))
+```
+Now that we know the unique values of `OccupationYears`, we know that the 999 value is most likely a mistake. We are going to count the number of observations have this error in order to determine what to do next. 
+```{r, echo=TRUE}
+count(Procrastination[grep("999", Procrastination$OccupationYears),])
+```
+There are 42 entries that include 999 as their number of years in current occupation, so we are not going to delete those values. Instead, we are going to change all of the 999 entries to NAs.  
+```{r, echo=TRUE}
+Procrastination[grep("999", Procrastination$OccupationYears), "OccupationYears"] <- ""
+```
+In the `NumberSons` column, we need to check and see which values seem off.  
+```{r, echo=TRUE}
+data.frame(unique(Procrastination$NumberSons))
+class(Procrastination$NumberSons)
+```
+We know that in this column, `Male`= 1 Son and `Female` = 2 Sons. Therefore, we need to change each Male and Female entry to their corresponding numbers.  
+```{r, echo=TRUE}
+#Figure out which regular expressions get the grep to only include what is in the quotations - right now both male and female are returning the same rows. Maybe because they are in factor format?
+#Procrastination[grep("^Male", Procrastination$NumberSons),]
+#Procrastination[grep("Female", Procrastination$NumberSons),]
+```
+In our `CountryOfResidence` column, we need to check and see which values seem off.  
+```{r, echo=TRUE}
+data.frame(unique(Procrastination$CountryOfResidence))
+```
+Because 0 is not a country of residence, we need to change it to a NA.  
+```{r, echo=TRUE}
+Procrastination[grep("0", Procrastination$CountryOfResidence), "CountryOfResidence"] <- ""
+```
+Looking at `Occupation`, we need to check and see which values are not Occupations.  
+```{r, echo=TRUE}
+data.frame(unique(Procrastination$Occupation))
+```
+First, we notice that `please specify` and `0` are not occupations, we can get rid of them.  
+```{r, echo=TRUE}
+Procrastination[grep("0", Procrastination$Occupation), "Occupation"] <- ""
+Procrastination[grep("please specify", Procrastination$Occupation), "Occupation"] <- ""
+```
+Next, we need to group certain occupations together so that we can get accurate counts.
+```{r, echo=TRUE}
+#Error: invalid factor level, NA generated
+Procrastination[(grep("teacher", Procrastination$Occupation)), "Occupation"] <- "Teacher"
+Procrastination[(grep("Computer", Procrastination$Occupation)), "Occupation"] <- "Computers"
+```
+Looking at the `Kids` column, we only want to have a Yes or No response.
+```{r, echo=TRUE}
+data.frame(unique(Procrastination$Kids))
+#Look into regular expressions to get rid of this
+```
+Now that all of the columns are clean, we need to make sure they are of the correct data types.  
+```{r, echo=TRUE}
+sapply(Procrastination, class)
+```
+There are certain columns that are not, so we are going to change them and then check again.  
+```{r, echo=TRUE}
+
 ```
