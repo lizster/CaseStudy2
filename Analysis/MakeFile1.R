@@ -6,7 +6,7 @@
 library(dplyr)
 library(XML)
 library(rvest)
-library(RCurl)
+#library(RCurl)
 
 link = "https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries"
 doc <- read_html(link) 
