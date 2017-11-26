@@ -1,0 +1,25 @@
+Final Project Checklist
+
+- Codebook
+	- Source of data
+	- Column descriptions
+	- Research and write descriptions of DP, AIP, GP, and SWLS
+	
+- GitHub (section 1)
+	- Write main readme introduction
+	- Folder and file structure
+	- Makefiles (section 2)
+	- Data files
+	
+- Markdown Presentation
+	- Introduction
+	- Explain coding and graphs
+	- Conclusion
+
+- Analysis
+	- Web Scrapping wikipedia (section 3)
+	- Tasks (section 4)
+	- Graphs (section 5)
+	- Output data (section 6)
+
+- Peer Grading (section 7)
