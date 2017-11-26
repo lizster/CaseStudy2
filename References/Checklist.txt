@@ -2,7 +2,7 @@ Final Project Checklist
 
 - Codebook
 	- Source of data
-	- Column descriptions
+	- Column descriptions [Lizzy]
 	- Research and write descriptions of DP, AIP, GP, and SWLS
 	
 - GitHub (section 1)
