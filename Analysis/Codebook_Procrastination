@@ -1,0 +1,6 @@
+`Procrastination`: contains the data set `Procrastination.csv`  
+`dim`: contains the dimensions of `Procrastination`  
+`OccupationYears`: contains the unique values of the corresponding column  
+`NumberSons`: contains the unique values of the corresponding column  
+`Pro2`: contains the combination of `Procrastination.csv` and `HumanDevelopmentIndex.csv`  
+* merged by the corresponding `Country` columns  
