@@ -7,7 +7,7 @@ Final Project Checklist
 	
 - GitHub (section 1)
 	- Write main readme introduction
-	- Folder and file structure
+	- Folder and file structure [Lizzy]
 	- Makefiles (section 2)
 	- Data files
 	
@@ -17,7 +17,7 @@ Final Project Checklist
 	- Conclusion
 
 - Analysis
-	- Web Scrapping wikipedia (section 3)
+	- Web Scrapping wikipedia (section 3) [Casey]
 	- Tasks (section 4)
 	- Graphs (section 5)
 	- Output data (section 6)
