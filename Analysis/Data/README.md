@@ -68,7 +68,21 @@ Below is a brief description of each column:
 * `SWLS3`: "I am satisfied with my life"  
 * `SWLS4`: "So far I have gotten the important things I want in life"  
 * `SWLS5`: "If I could live my life over, I would change almost nothing"  
-* `ProcrastinatorYourPerspective`: "Do you consider yourself a procrastinator?"
-* `ProcrastinatorOthersPerspective`: "Do others consider you a procrastinator?"
+* `P1`: "Do you consider yourself a procrastinator?"
+* `P2`: "Do others consider you a procrastinator?"
+* `DPMean`: contains the means of all of the answers from the Decisional Procrastination Scale  
+* `AIPMean`: contains the means of all of the answers from the Adult Inventory of Procrastination  
+* `GPMean`: contains the means of all of the answers from the General Procrastination Scale  
+* `SWLSMean`: contains the means of all of the answers from the Satisfaction with Life Scale  
+
+## HumanDevelopmentIndex.csv  
+This data set contains information regarding the Human Development Index. 
+For more information on this index and the data collection, here is the original link https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries.  
+Column Descriptions:  
+* `Country`: contains a list of all of the countries used in the data set 
+* `HDI`: a combined statistic of a country's lifespan, education level, and GDP per capita. A higher HDI score indicates scoring high on each of these levels. It is scored on a level of 0-1. 
+* `Category`: consists of Low, Medium, High, and Very High, which correspond to HDI score per country
+## Procrastination2.csv  
+This data set contains the cleaned and merged version of the above two data sets. Reference their column names for further information. 
 
 
