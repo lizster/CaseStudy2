@@ -1,4 +1,2 @@
-# Codebook for Procrastination.Rmd  
+# Analysis
 
-### Variables
-`Procrastination`: contains the raw data used for analysis  
