@@ -1,25 +1,61 @@
 Final Project Checklist
 
 - Codebook
-	- Source of data
+	- Source of data [Casey]
 	- Column descriptions [Lizzy]
-	- Research and write descriptions of DP, AIP, GP, and SWLS
+	- Research and write descriptions of DP, AIP, GP, and SWLS [Lizzy]
 	
 - GitHub (section 1)
-	- Write main readme introduction
+	- Write main readme introduction [Both]
 	- Folder and file structure [Lizzy]
-	- Makefiles (section 2)
-	- Data files
+	- Makefiles (section 2) [Casey]
+	- Data files [Casey]
 	
 - Markdown Presentation
-	- Introduction
-	- Explain coding and graphs
-	- Conclusion
+	- Introduction [Lizzy]
+	- Explain coding and graphs [Both]
+	- Conclusion [Lizzy]
 
 - Analysis
 	- Web Scrapping wikipedia (section 3) [Casey]
-	- Tasks (section 4)
-	- Graphs (section 5)
-	- Output data (section 6)
+	- Tasks (section 4) [Casey]
+	- Graphs (section 5) [Casey]
+	- Output data (section 6) [Casey]
 
-- Peer Grading (section 7)
+- Peer Grading (section 7) [Both]
+
+TASKS:
+
+1a. Ongoing
+1b. Ongoing
+1c. Ongoing
+
+2a. Done
+2b. Done (need to update codebook)
+2ci. Coding is done. need to write descriptions in markdown file
+2cii. Done
+2ciii. Done
+2civ. Needs more consolidation
+2d. Done
+2e. Done
+
+3a. Done
+3b. Done
+3c. Done
+
+4a. Done
+4b. 
+4c.  
+4d. 
+4e. 
+
+5a.
+5b.
+5c. 
+5d.
+5e.
+
+6a.
+6b.
+6c.
+6d.
