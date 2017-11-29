@@ -26,7 +26,8 @@ colnames(df)[13] <- 'Sons'
 colnames(df)[14] <- 'Daughters'
 #colnames(df)[15] <- '' 
 #Needs more work
-
+colnames(df)[60] <- 'YouPro'
+colnames(df)[61] <- 'OthersPro'
 
 #Question 2.c.iii
 levels(df$Country)[levels(df$Country) == "0"] <- ""
@@ -68,6 +69,11 @@ levels(df$CommunitySize)[levels(df$CommunitySize) == "Small Town"] <- "Small-Cit
 levels(df$CommunitySize)[levels(df$CommunitySize) == "Medium-Sized"] <- "Medium-City"
 
 levels(df$MatritalStatus)[levels(df$MatritalStatus) == "0"] <- ""
+
+levels(df$OthersPro)[levels(df$OthersPro) == "0"] <- ""
+levels(df$OthersPro)[levels(df$OthersPro) == "4"] <- ""
+
+
 
 #Question 2.c.i
 levels(df$Sons)[levels(df$Sons) == "Female"] <- "2"
