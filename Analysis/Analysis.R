@@ -1,3 +1,5 @@
+
+
 df <- read.csv('Data/Procrastination2.csv')
 
 #4a
@@ -33,17 +35,49 @@ library(ggthemes)
 library(plyr)
 
 #df2 <- head(sort(df$DPmean,decreasing=TRUE), n = 15)
+df2 <- aggregate(DPmean ~ Country, mean)
 
+question5A <- ggplot(data = df, aes(Country,DPmean)) + 
+                geom_col(aes(fill = Category))
+                #coord_flip() +
+                #labs(y = 'Median ABV',title = 'Top 15 Nations Average Procrastination Scores') +
+                #theme_economist() +
+                #theme(plot.title = element_text(hjust = 0.5))
 
-ggplot(data = df, aes(y = DPmean,x = Country)) + 
-  geom_col(aes(fill = Category)) +
-  coord_flip() +
-  labs(y = 'Median ABV',title = 'Top 15 Nations Average Procrastination Scores') +
-  theme_economist() +
-  theme(plot.title = element_text(hjust = 0.5))
-
+print(question5A)
 #Question 5c
 
 #Question 5d
+Q5d <- ggplot(data = df, aes(x = Age,y = log(Income))) + 
+      geom_point(aes(color=Gender)) +
+      labs(x = 'Age', y = 'Income',title = 'Relationship Between Age and Income') +
+      theme_economist() +
+      theme(plot.title = element_text(hjust = 0.5)) +
+      geom_smooth(method = 'lm')
 
+print(Q5d) 
 
+Q5dlm <- lm(log(Income) ~ Age, data = df)
+summary(Q5dlm)
+
+#Question 5e
+Q5e <- ggplot(data = df, aes(x = HDI,y = SWLSmean)) + 
+        geom_point() +
+        labs(x = 'Age', y = 'Income',title = 'Relationship Between Human Development Index and Life Satisfaction') +
+        theme_economist() +
+        theme(plot.title = element_text(hjust = 0.5)) +
+        geom_smooth(method = 'lm')
+
+print(Q5e) 
+
+Q5elm <- lm(SWLSmean ~ HDI, data = df)
+summary(Q5elm)
+
+Q5e2 <- ggplot(data = df, aes(y = SWLSmean,x = HDI)) + 
+          geom_col() +
+          #coord_flip() +
+          labs(x = 'HDI',y = 'Mean SWLS',title = 'Relationship Between Human Development Index and Life Satisfaction') +
+          theme_economist() +
+          theme(plot.title = element_text(hjust = 0.5))
+
+print(Q5e2)
