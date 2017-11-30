@@ -32,15 +32,18 @@ library(ggplot2)
 library(ggthemes)
 library(plyr)
 
-#df2 <- head(sort(df$DPmean,decreasing=TRUE), n = 15)
+
+df3 <- aggregate(DPmean ~ Country + Category,data = df2, mean)
+
+df3 <- head(df3[order(df3$DPmean, decreasing = TRUE),], n = 15)
 
 
-ggplot(data = df, aes(y = DPmean,x = Country)) + 
+ggplot(data = df3, aes(y = DPmean,x = reorder(Country,DPmean))) + 
   geom_col(aes(fill = Category)) +
   coord_flip() +
-  labs(y = 'Median ABV',title = 'Top 15 Nations Average Procrastination Scores') +
+  labs(x = 'Country',y = 'DP Mean',title = 'Top 15 Nations Average Procrastination Scores') +
   theme_economist() +
-  theme(plot.title = element_text(hjust = 0.5))
+  theme(plot.title = element_text(hjust = 0.5)) 
 
 #Question 5c
 
