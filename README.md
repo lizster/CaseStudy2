@@ -1,6 +1,9 @@
 # Procrastination  
 After extensive data collection, Casey and I have gathered a data set regarding procrastination. This data set can be found in the `Data` folder within the `Analysis` folder.  
 
+-Talk about how procrastination is effecting grades of MSDS students  
+-How does age take into account  
+
 ## Repository Breakdown  
 Within the root directory, you can find both the Rmarkdown file and the Markdown file which include the full analysis of our data.  
 
