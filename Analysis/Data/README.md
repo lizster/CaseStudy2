@@ -19,13 +19,13 @@ Below is a brief description of each column:
 * `NumberSons`: number of sons (integer)  
 * `NumberDaughters`: number of daughters (integer)  
 #### The following columns refer to the following procrastination tests:  
-*Decisional Procrastination Scale (DP)*: A cognitive measure of procrastination. In relation to students, this type of procrastination is one of the hardest problems students have to deal with when they have to make decisions on their academic tasks (Mann, 2016).  
+* *Decisional Procrastination Scale (DP)*: A cognitive measure of procrastination. In relation to students, this type of procrastination is one of the hardest problems students have to deal with when they have to make decisions on their academic tasks (Mann, 2016).  
   * Mann L. (2016). Procrastination revisited: a commentary. Aust. Psychol. 51 47–51. 10.1111/ap.12208  
-*Adult Inventory of Procrastination* (AIP) Scale: Includes items related to promptness, meeting deadlines, and timeliness (Svartdal, 2017). This scale was originally created by McCown et al. in 1989.  
+* *Adult Inventory of Procrastination* (AIP) Scale: Includes items related to promptness, meeting deadlines, and timeliness (Svartdal, 2017). This scale was originally created by McCown et al. in 1989.  
   * Svartdal, Frode, and Piers Steel. "Irrational Delay Revisited: Examining Five Procrastination Scales in a Global Sample." Frontiers in Psychology, 2017. Academic OneFile, link.galegroup.com/apps/doc/A513126429/AONE?u=txshracd2548&sid=AONE&xid=7483e39a. Accessed 1 Dec. 2017.  
-*General Procrastination Scale (GP)*: a behavorial perspective of procrastination that addresses implemental or behavioral delay (Svartdal, 2017). This scale was oringinaly created by Lay in 1986.  
+* *General Procrastination Scale (GP)*: a behavorial perspective of procrastination that addresses implemental or behavioral delay (Svartdal, 2017). This scale was oringinaly created by Lay in 1986.  
   * Svartdal, Frode, and Piers Steel. "Irrational Delay Revisited: Examining Five Procrastination Scales in a Global Sample." Frontiers in Psychology, 2017. Academic OneFile, link.galegroup.com/apps/doc/A513126429/AONE?u=txshracd2548&sid=AONE&xid=7483e39a. Accessed 1 Dec. 2017.  
-*Satisfaction with Life Scale (SWLS)*  Scale: "To measure life satisfaction, Diener, Emmons, Larsen, and Griffin (1985) developed the Satisfaction with Life Scale (SWLS)" (Wang, Daoyang, et al., 2017).  
+* *Satisfaction with Life Scale (SWLS)*  Scale: "To measure life satisfaction, Diener, Emmons, Larsen, and Griffin (1985) developed the Satisfaction with Life Scale (SWLS)" (Wang, Daoyang, et al., 2017).  
   * Testing the factorial invariance of the satisfaction with life scale across Chinese adolescents." Social Behavior and Personality: An International Journal, vol. 45, no. 3, 2017, p. 505+. Academic OneFile, link.galegroup.com/apps/doc/A497198164/AONE?u=txshracd2548&sid=AONE&xid=f6f4ac58. Accessed 1 Dec. 2017.  
 * `DP1`: "I waste a lot of time on trivial matters before getting to the final decisions"  
 * `DP2`: "Even after I make a decision I delay acting upon it"  
