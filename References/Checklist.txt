@@ -26,13 +26,15 @@ Final Project Checklist
 
 TASKS:
 
-1a. Ongoing
-1b. Ongoing
-1c. Ongoing
+1a. Ongoing  
+Check the live session slides to figure out what more we need to include
+1b. Ongoing  
+We need to add descriptoins of how we changed each data set  
+1c. Done
 
-2a. Done
-2b. Done (need to update codebook)
-2ci. Coding is done. need to write descriptions in markdown file
+2a. Done  
+2b. Done  
+2ci. Done
 2cii. Done
 2ciii. Done
 2civ. Needs more consolidation
@@ -44,16 +46,16 @@ TASKS:
 3c. Done
 
 4a. Done
-4b. 
-4c.  
-4d. 
-4e. 
+4b. Done
+4c. Needs more work  
+4d. Needs more work
+4e. Make this look prettier
 
-5a.
-5b.
-5c. 
-5d.
-5e.
+5a. Done  
+5b. Done
+5c. Done  
+5d. Ongoing  
+5e. Ongoing
 
 6a.
 6b.
