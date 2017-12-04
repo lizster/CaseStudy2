@@ -1,7 +1,10 @@
 # Raw Data 
 This folder contains both the raw data and the relevant graphs associated with our analysis.  
 
-## Delete .DS_Store and .Rhistory
+## Delete .DS_Store  
+
+## .Rhistory  
+Do we need to keep this file? Or is it okay to just have it included in the RMarkDown?  
 
 ## HumanDevelopmentIndex.csv  
 This data set contains information regarding the Human Development Index. 
