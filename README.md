@@ -54,6 +54,6 @@ Casey Martinez:
 * E-mail:  
 
 Lizzy Sterling:  
-* Phone:  
-* E-mail:  
+* Phone: 864-704-5739  
+* E-mail: lsterling@smu.edu  
 
