@@ -14,9 +14,7 @@ After analysis, we found that when looking at the association of age when lookin
 From these results, Dr. Engels is hoping to change the marketing of the program towards individuals who are less likely to procrastinate or towards countries that are less likely to procrastinate. That being said, everyone has a tendency to procrastinate, so it may be wise to determine a way to focus on helping people not procrastinate rather than targeting non-procrastinators.  
 
 Although this client for this analysis was the MSDS program at Southern Methodist University, both the data set and the analysis are global and can be applied to a variety of businesses.  
-  
--Talk about how others view your sense of Procrastination   
--Talk about how procrastination is effecting grades of MSDS students   
+
 ## Repository Breakdown  
 In order to make this analysis as reproducible as possible,we tried to include as much of the code as we can, as well as sufficient information on why and how we got our results, so that anyone can look at our analysis using additional data.  
 
