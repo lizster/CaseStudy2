@@ -3,7 +3,7 @@
 Contains all of the data used and created for analysis.  
 
 ### .Rhistory  
-What is the purpose of this file?  
+Contains our raw code for analysis 
 
 ### Analysis.R  
 Contains the code used for analysis, using a subset of the data set `Procrastion2.csv` to only include adults.  
