@@ -240,16 +240,16 @@ kable(head(sort(Occupation$Occupation), n=10))
 | bookseller                               |
 | Communications                           |
 
-First, we notice that `please specify` and `0` are not occupations, we can get rid of them.
+Because this was a fill in the blank type question, there are many answers that could be grouped with others. We can group these occupations together so that we can get accurate counts. Some examples include entries that include `Teachers` and entries that include `Computer`.
 
 ``` r
 Procrastination[grep("0", Procrastination$Occupation), "Occupation"] <- ""
 Procrastination[grep("please specify", Procrastination$Occupation), "Occupation"] <- ""
-```
-
-Because this was a fill in the blank type question, there are many answers that could be grouped with others. We can group these occupations together so that we can get accurate counts. Some examples include entries that include `Teachers` and entries that include `Computer`.
-
-``` r
+Procrastination[grep("na", Procrastination$Occupation), "Occupation"] <- ""
+Procrastination[grep(" veterinarian", Procrastination$Occupation), "Occupation"] <- "Veterinarian"
+Procrastination[grep(" Teaching Assistant/Graduate student", Procrastination$Occupation), "Occupation"] <- "Teacher"
+Procrastination[grep("abc", Procrastination$Occupation), "Occupation"] <- ""
+Procrastination[grep("'Utterly shiftless arts student'... at p", Procrastination$Occupation), "Occupation"] <- ""
 Procrastination[(grep("teacher", Procrastination$Occupation)), "Occupation"] <- "Teacher"
 Procrastination[(grep("Computer", Procrastination$Occupation)), "Occupation"] <- "Computers"
 ```
@@ -405,6 +405,8 @@ Now that we have the data organized, we can combine them together and create a n
 
 ``` r
 df <- rbind(df1,df2,df3,df4,df5,df6,df7,df8)
+
+#6A
 write.csv(df, "HumanDevelopmentIndex.csv",row.names = FALSE)
 ```
 
@@ -426,6 +428,9 @@ From here-on-out, we only want to look at adult observations, so we are going to
 ``` r
 #4A
 ProAdult <- Pro[Pro$Age > 18,]
+
+#6B
+write.csv(ProAdult, "AdultProcrastination.csv",row.names = FALSE)
 ```
 
 The variables that we are most interested in are age, income, HDI, and the procrastination scale scores. We started by getting their summary statistics.
@@ -556,7 +561,7 @@ ggplot(ProAdult, aes(Age)) +
 
     ## Warning: Removed 6 rows containing non-finite values (stat_bin).
 
-![](Procrastination_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-27-1.png)
+![](Procrastination_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-26-1.png)
 
 From the income histogram, you can see that there is a right skew with the majority of individuals earning less than $50,000 a year.
 
@@ -565,6 +570,23 @@ ggplot(ProAdult, aes(AnnualIncome)) +
   geom_histogram() + 
   labs(x="Income",y="Frequency") + 
   ggtitle("Annual Income of Adult Procrastinators") +
+  theme_economist() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 348 rows containing non-finite values (stat_bin).
+
+![](Procrastination_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-27-1.png)
+
+The log transform of income yields a more normal distribution.
+
+``` r
+ggplot(ProAdult, aes(log(AnnualIncome))) +
+  geom_histogram(fill = 'red') + 
+  labs(x = "log of Income",y = "Frequency") + 
+  ggtitle("Log Transformed Annual Income of Adult Procrastinators") +
   theme_economist() +
   theme(plot.title = element_text(hjust = 0.5))
 ```
@@ -614,24 +636,25 @@ q4c.occupation2 <- head(q4c.occupation[order(q4c.occupation$freq, decreasing = T
 kable(q4c.occupation2,row.names=FALSE)
 ```
 
-| Occupation           |                                             freq|
-|:---------------------|------------------------------------------------:|
-|                      |                                             2499|
-| Teacher              |                                               81|
-| college professor    |                                               43|
-| engineer             |                                               31|
-| manager              |                                               31|
-| Attorney             |                                               30|
-| retired              |                                               27|
-| Editor               |                                               21|
-| Marketing            |                                               20|
-| attorney             |                                               19|
-| writer               |                                               19|
-| Unemployed           |                                               18|
-| houswife             |                                               16|
-| Software Developer   |                                               16|
-| Doctor; Physician    |                                               14|
-| We are going to look |  at how many people per country took our survey.|
+| Occupation         |  freq|
+|:-------------------|-----:|
+|                    |  2692|
+| Teacher            |    81|
+| college professor  |    43|
+| engineer           |    31|
+| Attorney           |    30|
+| retired            |    27|
+| Editor             |    21|
+| Marketing          |    20|
+| attorney           |    19|
+| writer             |    19|
+| Unemployed         |    18|
+| houswife           |    16|
+| Software Developer |    16|
+| Doctor; Physician  |    14|
+| Nurse              |    13|
+
+We are going to look at how many people per country took our survey.
 
 ``` r
 #Question 4D
@@ -667,23 +690,23 @@ We thought it would be interesting to know how many people have an accurate view
 q4e <- data.frame(ProAdult$P1,ProAdult$P2)
 colnames(q4e) <- c('P1','P2')
 q4e2 <- sapply(q4e,function(x){
-                                ifelse(q4e$P1 == 'yes' & q4e$P2 == 'yes', 'BothYes',
-                                ifelse(q4e$P1 == 'no' & q4e$P2 == 'no', 'BothNo',
+                                ifelse(q4e$P1 == 'yes' & q4e$P2 == 'yes', 'Both Agree',
+                                ifelse(q4e$P1 == 'no' & q4e$P2 == 'no', 'Both Disagree',
                                 ''))
                               })
 q4e2 <- as.data.frame(q4e2[,1])
 q4e3 <- count(q4e2)
-colnames(q4e3) <- c('Match','Freq')
+#colnames(q4e3) <- c('Match','Freq')
 
-kable(q4e3,row.names = FALSE,col.names = c('Match','Frequency'),caption = "Statistics for Age")
+kable(q4e3,row.names = FALSE,col.names = c('Match','Frequency'))
 ```
 
-| Match   |  Frequency|
-|:--------|----------:|
-|         |       1133|
-| BothNo  |        458|
-| BothYes |       2253|
-| NA      |          6|
+| Match         |  Frequency|
+|:--------------|----------:|
+|               |       1133|
+| Both Agree    |       2253|
+| Both Disagree |        458|
+| NA            |          6|
 
 After this, we are very interested in which nations have the highest reports of procrastination.
 
@@ -691,6 +714,9 @@ After this, we are very interested in which nations have the highest reports of 
 #5B
 df3 <- aggregate(DPmean ~ CountryOfResidence + Category, data = ProAdult, mean)
 df3 <- head(df3[order(df3$DPmean, decreasing = TRUE),], n=15)
+
+#6C
+write.csv(df3, "Top15CountriesHDI.csv",row.names = FALSE)
 
 ggplot(data = df3, aes(y = DPmean,x = reorder(CountryOfResidence, DPmean))) + 
   geom_col(aes(fill = Category)) +
@@ -806,6 +832,8 @@ summary(Q5elm)
 ``` r
 ggplot(ProAdult, aes(Category,SWLSmean)) + 
   geom_bar(aes(fill=Category), stat="identity") +
+  labs(x = 'Category',y = 'Mean SWLS',title = 'Relationship Between Life Satesfaction Score and Human Development Index Category') +
+  theme(plot.title = element_text(hjust = 0.5)) +
   theme_economist()
 ```
 
@@ -839,8 +867,6 @@ summary(Q5elm)
     ##   (6 observations deleted due to missingness)
     ## Multiple R-squared:  0.001495,   Adjusted R-squared:  0.0007144 
     ## F-statistic: 1.916 on 3 and 3840 DF,  p-value: 0.1248
-
-Combine 3A, 3B, 3C, 5B and 5C and output into a csv
 
 Conclusion
 ----------
