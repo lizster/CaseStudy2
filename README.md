@@ -50,8 +50,8 @@ Knezevic, Milana. "Procrastination: a student's worst enemy?", theguardian.com. 
 ### Contact Information  
 
 Casey Martinez:
-* Phone:  
-* E-mail:  
+* Phone:  512-993-9089
+* E-mail:  casianom@smu.edu
 
 Lizzy Sterling:  
 * Phone: 864-704-5739  
