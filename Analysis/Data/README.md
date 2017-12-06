@@ -1,12 +1,8 @@
 # Raw Data 
-This folder contains both the raw data and the relevant graphs associated with our analysis.  
-
-<<<<<<< HEAD
-=======
 ## Delete .DS_Store  
 
 ## .Rhistory  
-Do we need to keep this file? Or is it okay to just have it included in the RMarkDown?  
+Contains the raw code for our data
 
 ## HumanDevelopmentIndex.csv  
 This data set contains information regarding the Human Development Index. 
@@ -16,7 +12,6 @@ Column Descriptions:
 * `HDI`: a combined statistic of a country's lifespan, education level, and GDP per capita. A higher HDI score indicates scoring high on each of these levels. It is scored on a level of 0-1. 
 * `Category`: consists of Low, Medium, High, and Very High, which correspond to HDI score per country
 
->>>>>>> a3f60471332932ab6b8606e9af8d592139f4bd98
 ## Procrastination.csv  
 `Procrastination.csv` contains the raw, untouched data that we cleaned and ended up using for to answer our key questions that can be found in the README.md in the base repository.  
 Below is a brief description of each column:  
@@ -34,9 +29,6 @@ Below is a brief description of each column:
 * `MaritalStatus`: single, married, divorced, separated, etc...  
 * `NumberSons`: number of sons (integer)  
 * `NumberDaughters`: number of daughters (integer)  
-<<<<<<< HEAD
-**Figure out what to label the rest of these columns**
-=======
 #### The following columns refer to the following procrastination tests:  
 * *Decisional Procrastination Scale (DP)*: A cognitive measure of procrastination. In relation to students, this type of procrastination is one of the hardest problems students have to deal with when they have to make decisions on their academic tasks (Mann, 2016).  
   * Mann L. (2016). Procrastination revisited: a commentary. Aust. Psychol. 51 47–51. 10.1111/ap.12208  
@@ -102,5 +94,12 @@ Below is a brief description of each column:
 This data set contains the cleaned and merged version of the above two data sets. Reference their column names for further information.   
 This is the data set we used for the majority of our analysis.  
 
+## AdultProcrastination.csv 
+Contains the top 15 countries in terms of procrastination aong iwht their corresponding observations.  
 
->>>>>>> a3f60471332932ab6b8606e9af8d592139f4bd98
+## Occupation.csv  
+This csv contains all of the entries for occupation  
+We had to create this csv because we wanted to see all of the results, but there were too many to include in the analysis.  
+
+## ProcrastinationFinal_files  
+Contains the graphs that are included in our analysis for easy reference
