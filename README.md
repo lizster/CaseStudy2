@@ -19,26 +19,28 @@ Although this client for this analysis was the MSDS program at Southern Methodis
 In order to make this analysis as reproducible as possible,we tried to include as much of the code as we can, as well as sufficient information on why and how we got our results, so that anyone can look at our analysis using additional data.  
 
 Within the root directory, you can find both the Rmarkdown file and the Markdown file which include the full analysis of our data.  
+You can also find a folder with all of the graphs that are also found in the markdown file. This file can be used as a quick visual reference.  
 
 References:  
 * `CaseStudy2.pdf`: a specific outline of how we proceeded through the project  
 * `Checklist.txt`: a general outline of how we split up the tasks  
 
 Analysis:  
-* `.RHistory`:  
-* `Analysis.R`: contains the coe used for analysis  
-* `Codebook_Procrastination`: contains the variable information for our main analysis 
+* `.RHistory`: contains the raw code used for analysis  
+* `Analysis.R`: contains more specific code used for analysis  
+* `Codebook_Procrastination.txt`: contains the variable information for our main analysis  
 * `MakeFile1.R`: the code we used to scrape more information from the web  
-* `MakeFile2.R`: the code we used to merge and clean our data in order to make it tidy and ready for analysis  
-* `Data`: a folder with the data sets used
+* `MakeFile2.R`: the code we used to merge and clean our data in order to make it tidy and ready for analysis    
+* `Data`: a folder with the data sets used  
 
 Data:  
-* `.DS_Store`:  
-* `.Rhistory`:  
-* `HumanDevelopmentIndex.csv`:  contains information regarding the Human Development Index (HDI)
+* `.Rhistory`: contains the raw code used for analysis  
+* `HumanDevelopmentIndex.csv`:  contains information regarding the Human Development Index (HDI)  
 * `Procrastination.csv`: the raw data  
 * `Procrastination2.csv`: the tidied data (including HDI information)  
-
+* `AdultProcrastination.csv`: contains information from the top 15 countries in terms of procrastination  
+* `Occupation.csv`: contains the csv with all of the occupations that were input  
+  
 ## References  
 Knezevic, Milana. "Procrastination: a student's worst enemy?", theguardian.com. 2012. https://www.theguardian.com/education/mortarboard/2012/may/09/students-procrastinating-exams.  
 
