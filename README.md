@@ -7,22 +7,19 @@ Now, with our new, complete data set, we discussed with Dr. Engels what informat
 * Is there a relationship between Age and Income?  If so, what are some potential reasons for this?  
 * Is there a relationship between Life Satisfaction and HDI?  
 
-After analysis, we found that there is not a relationship between Age and Income or Life Satisfaction and HDI, so we decided to try and find significance between . . .
-Because the above two are not significant and not relevant to our question, we need to find a new question to ask
-  * Try and find any correlations with Age or Education with DP, etc... in order to conclusion
+We found that Qatar, Panama, Sri Lanka, Austria, Ecuador, Slovenia, and Portugal all are included in the top procrastination scores when looking at both the Decisional Procrastination and General Procrastination Scales. This tells us that these are the countries that are most likely to procrastinate, based on these two scales. 
+
+After analysis, we found that when looking at the association of age when looking at annual income, although the relationship is significant (p-value <.0001 from an ANOVA f-test), only 19.68% of the variance in income can be explained by age. When looking at the association of HDI with life satifcation, there is a relationship (p-value = .0113) but only .14% of the variance in life satifaction can be explained by life satisfaction. Looking at both of these, we know that there are relationships, but in order to determine either annual income or life satisfaction, we would need to look at the effect other variables have in conjuction with age and HDI respectively. 
+
+From these results, Dr. Engels is hoping to change the marketing of the program towards individuals who are less likely to procrastinate or towards countries that are less likely to procrastinate. That being said, everyone has a tendency to procrastinate, so it may be wise to determine a way to focus on helping people not procrastinate rather than targeting non-procrastinators.  
+
+Although this client for this analysis was the MSDS program at Southern Methodist University, both the data set and the analysis are global and can be applied to a variety of businesses.  
   
-* You could end up marketing more in certain countries with lower procrastinatin rates, etc...
-With this information, he is hoping to change the marketing of the program towards individuals who are less likely to procrastinate... This 
-
--Start by explaining the general problem and then talk about the web scraping and where we got the Procrastination data from   
--We want to make it reproducible (this is what GitHub is for)  
--Talk about how others view your sense of Procrastination
-
--Talk about how procrastination is effecting grades of MSDS students  
--How does age take into account  
--The client is just the program, but the data set is global to help generate an idea of worldwide Procrastination
-
+-Talk about how others view your sense of Procrastination   
+-Talk about how procrastination is effecting grades of MSDS students   
 ## Repository Breakdown  
+In order to make this analysis as reproducible as possible,we tried to include as much of the code as we can, as well as sufficient information on why and how we got our results, so that anyone can look at our analysis using additional data.  
+
 Within the root directory, you can find both the Rmarkdown file and the Markdown file which include the full analysis of our data.  
 
 References:  
@@ -48,7 +45,7 @@ Data:
 Knezevic, Milana. "Procrastination: a student's worst enemy?", theguardian.com. 2012. https://www.theguardian.com/education/mortarboard/2012/may/09/students-procrastinating-exams.  
 
 ### Contact Information  
-
+##### If you have any questions regarding our code or analysis, please do not hesitate to reach out to either of us. 
 Casey Martinez:
 * Phone:  
 * E-mail:  
