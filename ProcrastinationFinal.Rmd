@@ -4,13 +4,6 @@ author: "Lizzy Sterling and Casey Martinez"
 date: "12/06/2017"
 output: rmarkdown::github_document
 ---
-<<<<<<< HEAD
-
-```{r, echo=TRUE, include=FALSE}
-library(dplyr)
-```
-
-=======
 # Project Overview  
 Now that we have completed data collection, which can be found in `Procrastination.csv`, it is now time to conduct analysis. As we discussed, there are a few variables in particular that are worth looking at. These include age, annual income, and country of origin.  
 ## Key Questions  
@@ -36,14 +29,13 @@ library(knitr) #kable function
 ```
 
 ```{r, echo=TRUE}
-#knitr::opts_knit$set(root.dir = '/Users/lizzysterling/Desktop/CaseStudy2/Analysis/Data')
-knitr::opts_knit$set(root.dir = "~/SMU Data Science/MSDS_6306_Doing_Data_Science/CaseStudy2/Analysis/Data")
+knitr::opts_knit$set(root.dir = '/Users/lizzysterling/Desktop/CaseStudy2/Analysis/Data')
+#knitr::opts_knit$set(root.dir = "~/SMU Data Science/MSDS_6306_Doing_Data_Science/CaseStudy2/Analysis/Data")
 ```
 ## Data Cleaning
 Although we finished data collection, there is still some tidying to do. As you can see, it is a rather large data set, so we need to go back through and make sure that all of the entries are ready for analysis.  
 ```{r, echo=TRUE}
 #2A
-#setwd("Data")
 Procrastination <- read.csv("Procrastination.csv", header = TRUE, stringsAsFactors = FALSE)
 dim <- data.frame(nrow(Procrastination),ncol(Procrastination))
 colnames(dim) <- c("Number of Rows", "Number of Columns")
@@ -116,30 +108,30 @@ In our `CountryOfResidence` column, we only want values that are really countrie
 ```{r, echo=TRUE}
 Country <- data.frame(unique(Procrastination$CountryOfResidence))
 colnames(Country) <- "Countries"
-kable(head(sort(Country$Countries), n=10))
+kable(head(sort(Country$Countries), n=10), col.names = "Countries")
 ```
 Because 0 is not a country of residence, we need to change it to a NA.  
 ```{r, echo=TRUE}
 Procrastination[grep("0", Procrastination$CountryOfResidence), "CountryOfResidence"] <- ""
 ```
 Looking at `Occupation`, we want to get rid of values that arent really jobs, as well as combine like-jobs together.  
+* Due to the lenght of observation inputs, we decided to save them into a separate csv file, `Occupations.csv`, which can be found in the data section of our GitHub repository * 
 ```{r, echo=TRUE}
 Occupation <- data.frame(unique(Procrastination$Occupation))
+write.csv(Occupation, "Occupation.csv",row.names = FALSE)
 colnames(Occupation) <- "Occupation"
-kable(head(sort(Occupation$Occupation), n=10))
-
+kable(head(sort(Occupation$Occupation), n=10), col.names = "Occupations")
 ```
 
-Because this was a fill in the blank type question, there are many answers that could be grouped with others. We can group these occupations together so that we can get accurate counts. Some examples include entries that include `Teachers` and entries that include `Computer`.
+First, we notice that `please specify` and `0` are not occupations, we can get rid of them.  
 
 ```{r, echo=TRUE}
 Procrastination[grep("0", Procrastination$Occupation), "Occupation"] <- ""
 Procrastination[grep("please specify", Procrastination$Occupation), "Occupation"] <- ""
-Procrastination[grep("na", Procrastination$Occupation), "Occupation"] <- ""
-Procrastination[grep(" veterinarian", Procrastination$Occupation), "Occupation"] <- "Veterinarian"
-Procrastination[grep(" Teaching Assistant/Graduate student", Procrastination$Occupation), "Occupation"] <- "Teacher"
-Procrastination[grep("abc", Procrastination$Occupation), "Occupation"] <- ""
-Procrastination[grep("'Utterly shiftless arts student'... at p", Procrastination$Occupation), "Occupation"] <- ""
+```
+Because this was a fill in the blank type question, there are many answers that could be grouped with others. We can group these occupations together so that we can get accurate counts. Some examples include entries that include `Teachers` and entries that include `Computer`.  
+
+```{r, echo=TRUE}
 Procrastination[(grep("teacher", Procrastination$Occupation)), "Occupation"] <- "Teacher"
 Procrastination[(grep("Computer", Procrastination$Occupation)), "Occupation"] <- "Computers"
 ```
@@ -227,8 +219,6 @@ df8$Category <- "Low"
 Now that we have the data organized, we can combine them together and create a new csv `HumanDevelopmentIndex.csv`
 ```{r, echo=TRUE}
 df <- rbind(df1,df2,df3,df4,df5,df6,df7,df8)
-
-#6A
 write.csv(df, "HumanDevelopmentIndex.csv",row.names = FALSE)
 ```
 ## Analysis
@@ -240,19 +230,16 @@ Pro <- merge(x = Procrastination,y = HDI, by.x = 'CountryOfResidence', by.y = "C
 ```
 ### Adult Analysis  
 From here-on-out, we only want to look at adult observations, so we are going to remove participants who are under 18. This new variable is `ProAdult` and this is the set we are going to be using for the rest of the analysis.  
->>>>>>> a3f60471332932ab6b8606e9af8d592139f4bd98
 ```{r, echo=TRUE}
 #4A
 ProAdult <- Pro[Pro$Age > 18,]
-
-#6B
-write.csv(ProAdult, "AdultProcrastination.csv",row.names = FALSE)
 ```
 
 The variables that we are most interested in are age, income, HDI, and the procrastination scale scores. We started by getting their summary statistics. 
 ```{r, echo=TRUE}
 #4B
 row <- c("Minimum", "First Quartile", "Median", "Mean", "3rd Quartile", "Maximum", "NA's")
+col <- c("Statistics for Age", "Statistics for Annual Income", "Statistics for Human Development Index", "Statistics for Decisional Procrastination", "Statistics for Generalized Procastination", "Statistics for Adult Procrastination", "Statistics for Satisfaction with Life Scale")
 
 AgeSummary <- summary(ProAdult$Age)
 IncomeSummary <- summary(ProAdult$AnnualIncome)
@@ -262,21 +249,16 @@ GPSummary <- summary(ProAdult$GPmean)
 AIPSummary <- summary(ProAdult$AIPmean)
 SWLSSummary <- summary(ProAdult$SWLSmean)
 
-kable(matrix(AgeSummary, dimnames = list(row,"Statistics for Age")), digits = 0, row.names=TRUE) 
-kable(matrix(IncomeSummary, dimnames = list(row,"Statistics for Annual Income")), digits = 2, row.names=TRUE)
-kable(matrix(HDISummary, dimnames = list(row,"Statistics for Human Development Index")), digits = 4, row.names=TRUE)
-kable(matrix(DPSummary, dimnames = list(row,"Statistics for Decisional Procrastination")), digits = 4, row.names=TRUE)
-kable(matrix(GPSummary, dimnames = list(row,"Statistics for Generalized Procastination")), digits = 4, row.names=TRUE)
-kable(matrix(AIPSummary, dimnames = list(row,"Statistics for Adult Procrastination")), digits = 4, row.names=TRUE)
-kable(matrix(SWLSSummary, dimnames = list(row,"Statistics for Satisfaction with Life Scale")), digits = 4, row.names=TRUE)
-
+m <- cbind(AgeSummary, HDISummary, DPSummary, GPSummary, AIPSummary, SWLSSummary)
+mat <- matrix(m, nrow = 7, ncol = 7, dimnames = list(row,col))
+kable(mat, row.names=TRUE, digits = c(0,2,4,4,4,4,4))
 ```
+
 
 We are most interested in age and income, so we graphed them to see their distributions.  
 
 From the age distribution, you can see that there were more younger participants than older participants. Although the distribution is somewhat normal, there is definitely a stronger tendency towards the younger individuals.  
-
-```{r, echo=TRUE,fig.width=15,fig.height=7}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 ggplot(ProAdult, aes(Age)) +
   geom_histogram() + 
   labs(x="Age",y="Frequency") + 
@@ -286,8 +268,7 @@ ggplot(ProAdult, aes(Age)) +
 ```
 
 From the income histogram, you can see that there is a right skew with the majority of individuals earning less than $50,000 a year.  
-
-```{r, echo=TRUE,fig.width=15,fig.height=7}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 ggplot(ProAdult, aes(AnnualIncome)) +
   geom_histogram() + 
   labs(x="Income",y="Frequency") + 
@@ -296,96 +277,8 @@ ggplot(ProAdult, aes(AnnualIncome)) +
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
-The log transform of income yields a more normal distribution.
-
-```{r, echo=TRUE,fig.width=15,fig.height=7}
-ggplot(ProAdult, aes(log(AnnualIncome))) +
-  geom_histogram(fill = 'red') + 
-  labs(x = "log of Income",y = "Frequency") + 
-  ggtitle("Log Transformed Annual Income of Adult Procrastinators") +
-  theme_economist() +
-  theme(plot.title = element_text(hjust = 0.5))
-```
-We are taking a look at the raw data frame.
-```{r, echo=TRUE}
-#1A
-#Work on fixing the directory so that this does not need to be included
-Procrastination <- read.csv("Procrastination.csv", header=TRUE)
-dim(Procrastination)
-```
-In order to make the data set human-readable, we need to change the column names so that they make more sense.
-```{r, echo=TRUE}
-#1B
-#colnames(Procrastination)
-names(Procrastination)[1:14] <- c("Age", "Gender", "Kids", "Education", "WorkStatus", "AnnualIncome", "Occupation", "OccupationYears", "OccupationMonths", "CommunitySize", "CountryOfResidence", "MaritalStatus", "NumberSons", "NumberDaughers")
-#How do you want to label columns 15:61?
-```
-Now that we know all of the column names, we need to check and make sure all of the values in the columns are accurate.  
-
-<<<<<<< HEAD
-First, we need to make the values of `OccupationYears` to integers so that we can determine which years do not makes sense.  
-```{r, echo=TRUE}
-#1C
-Procrastination$OccupationYears <- round(Procrastination$OccupationYears)
-data.frame(unique(Procrastination$OccupationYears))
-```
-Now that we know the unique values of `OccupationYears`, we know that the 999 value is most likely a mistake. We are going to count the number of observations have this error in order to determine what to do next. 
-```{r, echo=TRUE}
-count(Procrastination[grep("999", Procrastination$OccupationYears),])
-```
-There are 42 entries that include 999 as their number of years in current occupation, so we are not going to delete those values. Instead, we are going to change all of the 999 entries to NAs.  
-```{r, echo=TRUE}
-Procrastination[grep("999", Procrastination$OccupationYears), "OccupationYears"] <- ""
-```
-In the `NumberSons` column, we need to check and see which values seem off.  
-```{r, echo=TRUE}
-data.frame(unique(Procrastination$NumberSons))
-class(Procrastination$NumberSons)
-```
-We know that in this column, `Male`= 1 Son and `Female` = 2 Sons. Therefore, we need to change each Male and Female entry to their corresponding numbers.  
-```{r, echo=TRUE}
-#Figure out which regular expressions get the grep to only include what is in the quotations - right now both male and female are returning the same rows. Maybe because they are in factor format?
-#Procrastination[grep("^Male", Procrastination$NumberSons),]
-#Procrastination[grep("Female", Procrastination$NumberSons),]
-```
-In our `CountryOfResidence` column, we need to check and see which values seem off.  
-```{r, echo=TRUE}
-data.frame(unique(Procrastination$CountryOfResidence))
-```
-Because 0 is not a country of residence, we need to change it to a NA.  
-```{r, echo=TRUE}
-Procrastination[grep("0", Procrastination$CountryOfResidence), "CountryOfResidence"] <- ""
-```
-Looking at `Occupation`, we need to check and see which values are not Occupations.  
-```{r, echo=TRUE}
-data.frame(unique(Procrastination$Occupation))
-```
-First, we notice that `please specify` and `0` are not occupations, we can get rid of them.  
-```{r, echo=TRUE}
-Procrastination[grep("0", Procrastination$Occupation), "Occupation"] <- ""
-Procrastination[grep("please specify", Procrastination$Occupation), "Occupation"] <- ""
-```
-Next, we need to group certain occupations together so that we can get accurate counts.
-```{r, echo=TRUE}
-#Error: invalid factor level, NA generated
-Procrastination[(grep("teacher", Procrastination$Occupation)), "Occupation"] <- "Teacher"
-Procrastination[(grep("Computer", Procrastination$Occupation)), "Occupation"] <- "Computers"
-```
-Looking at the `Kids` column, we only want to have a Yes or No response.
-```{r, echo=TRUE}
-data.frame(unique(Procrastination$Kids))
-#Look into regular expressions to get rid of this
-```
-Now that all of the columns are clean, we need to make sure they are of the correct data types.  
-```{r, echo=TRUE}
-sapply(Procrastination, class)
-```
-There are certain columns that are not, so we are going to change them and then check again.  
-```{r, echo=TRUE}
-
-```
-=======
 In addition to these variables, we are going to look at gender, work status, and occupation.  
+In terms of Gender, more females than males took the survey. For the most part, the responders to this survey have full-time jobs, with the most jobs reported being `Teacher`.  
 
 ```{r, echo=TRUE}
 #Question 4C
@@ -404,18 +297,21 @@ q4c.occupation2 <- head(q4c.occupation[order(q4c.occupation$freq, decreasing = T
 kable(q4c.occupation2,row.names=FALSE)
 
 ```
-
+  
+  
 We are going to look at how many people per country took our survey.  
-
+The most respondants live in the United States of America, with Canada and the United Kingdom coming in as far second and third.  
 ```{r, echo=TRUE}
 #Question 4D
 
 q4d <- count(ProAdult,'CountryOfResidence')
 q4d2 <- head(q4d[order(q4d$freq, decreasing = TRUE),],n=15)
 kable(q4d2,row.names=FALSE)
+
 ```
 
 We thought it would be interesting to know how many people have an accurate view of whether or not they are a procrastinator. We did this by finding out how many people who reported to yes, I am a procrastinator also reported yes, others think I am a procrastinator and vice versa.  
+We found that people were more likely to think they are a procrastinator and have other people think the same than vice versa.  
 ```{r, echo=TRUE}
 #Question 4e
 
@@ -434,13 +330,11 @@ kable(q4e3,row.names = FALSE,col.names = c('Match','Frequency'))
 ```
 
 After this, we are very interested in which nations have the highest reports of procrastination.  
-```{r, echo=TRUE,fig.width=15,fig.height=7}
+
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #5B
 df3 <- aggregate(DPmean ~ CountryOfResidence + Category, data = ProAdult, mean)
 df3 <- head(df3[order(df3$DPmean, decreasing = TRUE),], n=15)
-
-#6C
-write.csv(df3, "Top15CountriesHDI.csv",row.names = FALSE)
 
 ggplot(data = df3, aes(y = DPmean,x = reorder(CountryOfResidence, DPmean))) + 
   geom_col(aes(fill = Category)) +
@@ -451,7 +345,7 @@ ggplot(data = df3, aes(y = DPmean,x = reorder(CountryOfResidence, DPmean))) +
   theme(axis.text.x = element_text(size=7))
 ```
 
-```{r, echo=TRUE,fig.width=15,fig.height=7}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #5C
 df4 <- aggregate(GPmean ~ CountryOfResidence + Category, data = ProAdult, mean)
 df4 <- head(df4[order(df4$GPmean, decreasing = TRUE),], n=15)
@@ -464,10 +358,11 @@ ggplot(data = df4, aes(y = GPmean,x = reorder(CountryOfResidence, GPmean))) +
   theme(plot.title = element_text(hjust = 0.5)) + 
   theme(axis.text.x = element_text(size=7))
 ```
+We found that Qatar, Panama, Sri Lanka, Austria, Ecuador, Slovenia, and Portugal all are included in the top procrastination scores when looking at both the Decisional Procrastination and General Procrastination Scales. This tells us that these are the countries that are most likely to procrastinate, based on these two scales.  
 
-We want to look at how age and income are related to see if there is a pattern.  Although there is significance (insert p-value), the r^2 is not very high, so a relationship cannot be assumed. This discrepency may be attributed to the high number of degrees of freedom. 
 
-```{r, echo=TRUE,fig.width=15,fig.height=7}
+We want to look at how age and income are related to see if there is a pattern. You can see from the graph that there is definitely a linear trend. Although there is significance (p-value < .00001), only about 19.7% of the variance in income can be explained by age (r-square = .1996). From these statistics, we know that there is a relationship, but annual income does not depend on age alone.  
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #Question 5d
 ggplot(ProAdult, aes(Age, log(AnnualIncome))) + 
   geom_point(aes(color = Gender),stat = "identity") +
@@ -480,8 +375,10 @@ ggplot(ProAdult, aes(Age, log(AnnualIncome))) +
 Q5dlm <- lm(log(AnnualIncome) ~ Age, data = ProAdult)
 summary(Q5dlm)
 ```
-
-```{r, echo=TRUE,fig.width=15,fig.height=7}
+  
+  
+We then would like to see if there is a relationship between Life Satisfaction and HDI. From the graph, you can see that there is a linear trend, but it does not seem very strong. Looking at the statistics, we find that this relationship is linear (p-value=.0113), but only .14% of the variance in HDI can be attributed to satisfaction with life. From this, we know that there are definitely more and better variables that explain HDI, although there is some relationship between the two.  
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #5E
 ggplot(ProAdult, aes(SWLSmean, HDI)) + 
   geom_point() +
@@ -494,18 +391,26 @@ ggplot(ProAdult, aes(SWLSmean, HDI)) +
 Q5elm <- lm(HDI ~ SWLSmean, data = ProAdult)
 summary(Q5elm)
 ```
-
-```{r, echo=TRUE,fig.width=15,fig.height=7}
+  
+  
+That being said, it is very interesting to look at the barchart below which shows that the category `Very High`, which correspondes to HDI, is significantly greater in terms of Life Satisfaction score. But from looking at the summary statistics, we can see that the overall significance is not very high (p-value = .1248) and we cannot assume that any of the categories effects life satisfaction differently than the others.  
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 ggplot(ProAdult, aes(Category,SWLSmean)) + 
   geom_bar(aes(fill=Category), stat="identity") +
-  labs(x = 'Category',y = 'Mean SWLS',title = 'Relationship Between Life Satesfaction Score and Human Development Index Category') +
-  theme(plot.title = element_text(hjust = 0.5)) +
   theme_economist()
 
 Q5elm <- lm(SWLSmean ~ Category, data = ProAdult)
 summary(Q5elm)
 ```
 
+```{r, echo=TRUE}
+#6A - `HumanDevelopmentIndex.csv`
+#6B - `Procrastination2.csv`
+#6C
+
+```
 
 ## Conclusion  
->>>>>>> a3f60471332932ab6b8606e9af8d592139f4bd98
+From these results, Dr. Engels is hoping to change the marketing of the program towards individuals who are less likely to procrastinate or towards countries that are less likely to procrastinate. That being said, everyone has a tendency to procrastinate, so it may be wise to determine a way to focus on helping people not procrastinate rather than targeting non-procrastinators.  
+  
+Although this client for this analysis was the MSDS program at Southern Methodist University, both the data set and the analysis are global and can be applied to a variety of businesses.  

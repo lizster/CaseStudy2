@@ -1,0 +1,25 @@
+`Procrastination`: contains the data set `Procrastination.csv`. We had to change the variable names to make it more human-readable.   
+`dim`: contains the dimensions of `Procrastination` so that we know how many observations we have    
+
+`OccupationYears`: contains the unique values of the corresponding column. We found that there was an extreme value in this column, so we changed it to a NA value so that it would not efect analysis.  
+`NumberSons`: contains the unique values of the corresponding column. We found that there were some entries that were `Male` and `Female`, so we changed them to 0 and 1 so that the values can be changed to numeric.    
+
+`df1`,`df2`: data frames with information regarding Very High Human Development Index  
+`df3`,`df4`: data frames with information regarding High Human Development Index  
+`df5`,`df6`: data frames with information regarding Medium Human Development Index  
+`df7`,`df8`: data frames with information regarding Low Human Development Index  
+`df`: merges all of the above data frames into one  
+`HDI`: reads in the "HumanDevelopmentIndex.csv" that was created from the above `df`  
+`Pro`: contains the combination of `Procrastination.csv` and `HumanDevelopmentIndex.csv`  
+  * merged by the corresponding `Country` columns  
+`ProAdult`: contains the data for only the adults who took the survey (people over the age of 18)  
+
+`row`: contains the names used for summary statistics  
+
+`GenderTable`: contains a table of frequencies of the adult's genders  
+`WorkStatusTable`: contains a table of frequencies of the adult's work status's  
+`OccupationTable`: contains a table of frequencies of the adult's occupations  
+`CountryTable`: contains a table of frequencies of the adult's countries of residence  
+
+`A`: contains a matrix of confirmation (shows which people who idetified themselves as procrastinators think people also identify them as procrastinors and vice versa)  
+
