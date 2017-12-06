@@ -1,15 +1,19 @@
 
 
-df <- read.csv('Data/Procrastination2.csv')
+df <- read.csv('Procrastination2.csv')
 
 #4a
 df2 <- df[df$Age > 18,]
 
 #4b
-AgeSummary <- summary(df2$Age)
+q4b <- summary(df2$Age)
 
-FourB <- matrix(AgeSummary[1],AgeSummary[4],AgeSummary[6],AgeSummary[7])
-FourB2 <- table(AgeDesc)
+
+q4b2 <- table(matrix(q4b[1],q4b[4],q4b[6],q4b[7]))
+
+q4b2
+
+
 #needs more work
 
 #4c.

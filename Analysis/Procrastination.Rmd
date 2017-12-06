@@ -29,14 +29,15 @@ library(knitr) #kable function
 ```
 
 ```{r, echo=TRUE}
-knitr::opts_knit$set(root.dir = '/Users/lizzysterling/Desktop/CaseStudy2/Analysis/Data')
+#knitr::opts_knit$set(root.dir = '/Users/lizzysterling/Desktop/CaseStudy2/Analysis/Data')
+knitr::opts_knit$set(root.dir = "~/SMU Data Science/MSDS_6306_Doing_Data_Science/CaseStudy2/Analysis/Data")
 ```
 ## Data Cleaning
 Although we finished data collection, there is still some tidying to do. As you can see, it is a rather large data set, so we need to go back through and make sure that all of the entries are ready for analysis.  
-```{r, echo=TRUE, fig.width=15,fig.height=5}
+```{r, echo=TRUE}
 #2A
 #setwd("Data")
-Procrastination <- read.csv("Procrastination.csv", header=TRUE, stringsAsFactors=FALSE)
+Procrastination <- read.csv("Procrastination.csv", header = TRUE, stringsAsFactors = FALSE)
 dim <- data.frame(nrow(Procrastination),ncol(Procrastination))
 colnames(dim) <- c("Number of Rows", "Number of Columns")
 kable(dim)
@@ -58,9 +59,24 @@ We need to change the `Age` column so that they are in whole numbers.
 ```{r, echo=TRUE}
 Procrastination$Age <- as.integer(Procrastination$Age)
 ```
+
+The other column needs to be converted to factor variables.
+```{r, echo=TRUE}
+Procrastination$Gender <- as.factor(Procrastination$Gender)
+
+Procrastination$WorkStatus <- as.factor(Procrastination$WorkStatus)
+levels(Procrastination$WorkStatus)[levels(Procrastination$WorkStatus) == "0"] <- ""
+
+Procrastination$P1 <- as.factor(Procrastination$P1)
+Procrastination$P2 <- as.factor(Procrastination$P2)
+levels(Procrastination$P2)[levels(Procrastination$P2) == "0"] <- ""
+levels(Procrastination$P2)[levels(Procrastination$P2) == "4"] <- ""
+
+```
+
 We also need to make the values of `OccupationYears` to integers and then determine which years do not makes sense.  
 ```{r, echo=TRUE, fig.width=15, fig.height=5}
-#2C
+#Question #2C
 Procrastination$OccupationYears <- as.integer(Procrastination$OccupationYears)
 OccupationYears <- data.frame(unique(Procrastination$OccupationYears))
 colnames(OccupationYears) <- "OccupationYears"
@@ -68,6 +84,7 @@ kable(OccupationYears)
 ```
 We are going to change all of the 999 entries to NAs, because this is likely a mistake.  
 ```{r, echo=TRUE}
+#Question 2ci
 Procrastination[grep("999", Procrastination$OccupationYears), "OccupationYears"] <- ""
 ```
 
@@ -91,8 +108,8 @@ Procrastination[grep("^Female.*", Procrastination$NumberSons),"NumberSons"] <- r
 In our `CountryOfResidence` column, we only want values that are really countries. 
 ```{r, echo=TRUE}
 Country <- data.frame(unique(Procrastination$CountryOfResidence))
-colnames(Country) <- "Number of Sons"
-kable(Country)
+colnames(Country) <- "Countries"
+kable(head(sort(Country$Countries), n=10))
 ```
 Because 0 is not a country of residence, we need to change it to a NA.  
 ```{r, echo=TRUE}
@@ -102,32 +119,38 @@ Looking at `Occupation`, we want to get rid of values that arent really jobs, as
 ```{r, echo=TRUE}
 Occupation <- data.frame(unique(Procrastination$Occupation))
 colnames(Occupation) <- "Occupation"
-kable(Occupation)
+kable(head(sort(Occupation$Occupation), n=10))
+
 ```
 
 First, we notice that `please specify` and `0` are not occupations, we can get rid of them.  
+
 ```{r, echo=TRUE}
 Procrastination[grep("0", Procrastination$Occupation), "Occupation"] <- ""
 Procrastination[grep("please specify", Procrastination$Occupation), "Occupation"] <- ""
 ```
 Because this was a fill in the blank type question, there are many answers that could be grouped with others. We can group these occupations together so that we can get accurate counts. Some examples include entries that include `Teachers` and entries that include `Computer`.  
+
 ```{r, echo=TRUE}
 Procrastination[(grep("teacher", Procrastination$Occupation)), "Occupation"] <- "Teacher"
 Procrastination[(grep("Computer", Procrastination$Occupation)), "Occupation"] <- "Computers"
 ```
 
-Now that all of the columns are clean, we need to make sure they are of the correct data types.  
+Now that all of the columns are clean, we need to make sure they are of the correct data types. 
+
 ```{r, echo=TRUE}
 kable(sapply(Procrastination, class), col.names="Class Type")
 ```  
   
 We want to change both the `OccupationYears` and `NumberSons` into numeric values.  
+
 ```{r, echo=TRUE}
 Procrastination$OccupationYears <- as.numeric(Procrastination$OccupationYears)
 Procrastination$NumberSons <- as.integer(Procrastination$NumberSons)
 ```
 
-Although all of this is interesting, the procrastination scales are what we are really interested in, so we are going to take the means of each row to create mean scores for each individual. These new rows are `DPmean`, `AIPmean`, `GPmean`, and `SWLSmean`.  
+Although all of this is interesting, the procrastination scales are what we are really interested in, so we are going to take the means of each row to create mean scores for each individual. These new rows are `DPmean`, `AIPmean`, `GPmean`, and `SWLSmean`. 
+
 ```{r, echo=TRUE}
 Procrastination$DPmean <- rowMeans(Procrastination[15:19],na.rm = TRUE)
 Procrastination$AIPmean <- rowMeans(Procrastination[20:34],na.rm = TRUE)
@@ -238,59 +261,73 @@ kable(matrix(SWLSSummary, dimnames = list(row,"Statistics for Satisfaction with 
 We are most interested in age and income, so we graphed them to see their distributions.  
 
 From the age distribution, you can see that there were more younger participants than older participants. Although the distribution is somewhat normal, there is definitely a stronger tendency towards the younger individuals.  
-```{r, echo=TRUE}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 ggplot(ProAdult, aes(Age)) +
   geom_histogram() + 
-  labs(x="\nAge",y="Frequency\n") + 
-  ggtitle("Age of Procrastinators")
+  labs(x="Age",y="Frequency") + 
+  ggtitle("Age of Procrastinators") +
+  theme_economist() +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
 From the income histogram, you can see that there is a right skew with the majority of individuals earning less than $50,000 a year.  
-```{r, echo=TRUE}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 ggplot(ProAdult, aes(AnnualIncome)) +
   geom_histogram() + 
-  labs(x="\nIncome",y="Frequency\n") + 
-  ggtitle("Annual Income of Adult Procrastinators")
+  labs(x="Income",y="Frequency") + 
+  ggtitle("Annual Income of Adult Procrastinators") +
+  theme_economist() +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
 
 In addition to these variables, we are going to look at gender, work status, and occupation.  
 ```{r, echo=TRUE}
-#4C
-GenderTable <- table(ProAdult$Gender)
+#Question 4C
 
-WorkStatusTable <- table(ProAdult$WorkStatus)
+q4c.gender <- count(ProAdult,'Gender')
+q4c.gender2 <- q4c.gender[order(q4c.gender$freq, decreasing = TRUE),]
+kable(q4c.gender2,row.names=FALSE)
 
-OccupationTable <- table(ProAdult$Occupation)
+q4c.work <- count(ProAdult,'WorkStatus')
+q4c.work2 <- q4c.work[order(q4c.work$freq, decreasing = TRUE),]
+kable(q4c.work2,row.names=FALSE)
 
-#These don't look very pretty in the mark down file
-ProAdult %>%  
-  count_(GenderTable, sort=TRUE)
 
-ProAdult %>%
-  count_(WorkStatusTable, sort=TRUE)
+q4c.occupation <- count(ProAdult,'Occupation')
+q4c.occupation2 <- head(q4c.occupation[order(q4c.occupation$freq, decreasing = TRUE),],n=15)
+kable(q4c.occupation2,row.names=FALSE)
 
-ProAdult %>% 
-  count_(OccupationTable, sort=TRUE)
 ```
 We are going to look at how many people per country took our survey.  
 ```{r, echo=TRUE}
-#4D
-CountryTable <- table(ProAdult$CountryOfResidence)
-ProAdult %>% 
-  count_(CountryTable, sort=TRUE)
+#Question 4D
+
+q4d <- count(ProAdult,'CountryOfResidence')
+q4d2 <- head(q4d[order(q4d$freq, decreasing = TRUE),],n=15)
+kable(q4d2,row.names=FALSE)
+
 ```
 
 We thought it would be interesting to know how many people have an accurate view of whether or not they are a procrastinator. We did this by finding out how many people who reported to yes, I am a procrastinator also reported yes, others think I am a procrastinator and vice versa.  
 ```{r, echo=TRUE}
-#4e
-A <- table(ProAdult$P1,ProAdult$P2)
-A[-1,-1]
-A[-1,-c(1,2,3)]
-#could use some labels
+#Question 4e
+
+q4e <- data.frame(ProAdult$P1,ProAdult$P2)
+colnames(q4e) <- c('P1','P2')
+q4e2 <- sapply(q4e,function(x){
+                                ifelse(q4e$P1 == 'yes' & q4e$P2 == 'yes', 'Both Agree',
+                                ifelse(q4e$P1 == 'no' & q4e$P2 == 'no', 'Both Disagree',
+                                ''))
+                              })
+q4e2 <- as.data.frame(q4e2[,1])
+q4e3 <- count(q4e2)
+#colnames(q4e3) <- c('Match','Freq')
+
+kable(q4e3,row.names = FALSE,col.names = c('Match','Frequency'))
 ```
 
 After this, we are very interested in which nations have the highest reports of procrastination.  
-```{r, echo=TRUE}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #5B
 df3 <- aggregate(DPmean ~ CountryOfResidence + Category, data = ProAdult, mean)
 df3 <- head(df3[order(df3$DPmean, decreasing = TRUE),], n=15)
@@ -304,7 +341,7 @@ ggplot(data = df3, aes(y = DPmean,x = reorder(CountryOfResidence, DPmean))) +
   theme(axis.text.x = element_text(size=7))
 ```
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #5C
 df4 <- aggregate(GPmean ~ CountryOfResidence + Category, data = ProAdult, mean)
 df4 <- head(df4[order(df4$GPmean, decreasing = TRUE),], n=15)
@@ -319,20 +356,40 @@ ggplot(data = df4, aes(y = GPmean,x = reorder(CountryOfResidence, GPmean))) +
 ```
 
 We want to look at how age and income are related to see if there is a pattern.  Although there is significance (insert p-value), the r^2 is not very high, so a relationship cannot be assumed. This discrepency may be attributed to the high number of degrees of freedom. 
-```{r, echo=TRUE}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #Question 5d
-ggplot(ProAdult, aes(Age, AnnualIncome)) + 
-  geom_point(aes(fill=Gender),stat="identity")
+ggplot(ProAdult, aes(Age, log(AnnualIncome))) + 
+  geom_point(aes(color = Gender),stat = "identity") +
+  labs(x = 'Age',y = 'log of Income',title = 'Relationship Between Age and Income') +
+  theme_economist() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = 'lm')
+
+
+Q5dlm <- lm(log(AnnualIncome) ~ Age, data = ProAdult)
+summary(Q5dlm)
 ```
 
-```{r, echo=TRUE}
+```{r, echo=TRUE,fig.width=15,fig.height=5}
 #5E
 ggplot(ProAdult, aes(SWLSmean, HDI)) + 
-  geom_point(aes(fill=Gender), stat="identity")
+  geom_point() +
+  labs(x = 'HDI',y = 'Mean SWLS',title = 'Relationship Between Life Satesfaction Score and Human Development Index') +
+  theme_economist() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  geom_smooth(method = 'lm')
+
+
+Q5elm <- lm(HDI ~ SWLSmean, data = ProAdult)
+summary(Q5elm)
 ```
-```{r, echo=TRUE}
-ggplot(ProAdult, aes(SWLSmean, Category)) + 
-  geom_point(aes(fill=Gender), stat="identity")
+```{r, echo=TRUE,fig.width=15,fig.height=5}
+ggplot(ProAdult, aes(Category,SWLSmean)) + 
+  geom_bar(aes(fill=Category), stat="identity") +
+  theme_economist()
+
+Q5elm <- lm(SWLSmean ~ Category, data = ProAdult)
+summary(Q5elm)
 ```
 Combine 3A, 3B, 3C, 5B and 5C and output into a csv
 ```{r, echo=TRUE}
