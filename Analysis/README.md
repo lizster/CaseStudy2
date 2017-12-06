@@ -15,11 +15,6 @@ Contains the variable information for Procrastination.Rmd
 Contains the code used to scrape the Human Development Index data from the internet and then turning it into a a useable data set  
 
 ### MakeFile2.R
-I am not sure if this is necessary  
+Contains example code for cleaning  
 
-### Procrastination.Rmd  
-Contains the RMarkdown version of the analysis  
-
-### Procrastination.md  
-Contains the full analysis (graphs included) 
 
