@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-# Codebook for Procrastination.Rmd  
-
-### Variables
-`Procrastination`: contains the raw data used for analysis  
-=======
 # Analysis
 ### Data (folder)  
 Contains all of the data used and created for analysis.  
@@ -28,4 +22,4 @@ Contains the RMarkdown version of the analysis
 
 ### Procrastination.md  
 Contains the full analysis (graphs included) 
->>>>>>> a3f60471332932ab6b8606e9af8d592139f4bd98
+
