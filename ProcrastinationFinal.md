@@ -1,13 +1,17 @@
-Case Study 2
+MSDS Procrastination
 ================
 Lizzy Sterling and Casey Martinez
 12/06/2017
 
-Project Overview
-================
+We are interested in looking at global procrastination information in order to dtermine how we can help students in the MSDS program at Southern Methodist University. After data collection, we now have a complete set of data which can be found in `Procrastination.csv`. As we discussed, there are a few variables in particular that are worth looking at when conducting analysis. These include age, annual income, and country of origin.
 
-Now that we have completed data collection, which can be found in `Procrastination.csv`, it is now time to conduct analysis. As we discussed, there are a few variables in particular that are worth looking at. These include age, annual income, and country of origin.
-\#\# Key Questions
+Key Questions
+-------------
+
+-   What are the top 15 nations in average procrastination scores? (In terms of DP, AIP, and GP)
+-   How many nations, if any, show up in both of these categories?
+-   Is there a relationship between Age and Income? If so, what are some potential reasons for this?
+-   Is there a relationship between Life Satisfaction and HDI?
 
 ### Libraries used
 
