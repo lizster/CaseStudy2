@@ -1,10 +1,7 @@
 ## Project Overview  
-*Insert statistic about procrastination and education*  
-Because of this effect of procrastination on education, Dr. Daniel Engels, the head of the MSDS program at Southern Methodist University, reached out to us to try and determine which kind of people are procrastinating and where are they coming from?  
-To start, we conducted a multi-nation survey to determing the procrastination level of 4264 individuals by giving them 3 procrastination questionnaires the Decisional Procrastination Scale, the AIP, and the General Procrastination Scale.  Along with these measures of procrastination, we asked all participants to rate both how much they view themselves as a procrastinator and how much they feel others think they procrastinate. We also collected general information about the participants, such as their age, size of family, education level, and other demographic information.  
-After we collected all of this information, we realized that we received a very diverse group of participants in terms of where they are from. We decided that we wanted to see if there was a relationship between country of residence and procrastination level. One way of doing this is looking at the Human Development Index (HDI) for the countries included in the survey. To get this data, we scraped the HDI information from Wikipedia (https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries). Along with the indexes, we also added the category of HDI (Low, Medium, High, or Very High) for each country into our original data set.  
+"Students are biologically and socially predisposed to put off until tomorrow what we should do today, says Dr. Piers Steel, author of The Procrastination Equation (Knezevic 2012). Because of this effect of procrastination on education, Dr. Daniel Engels, the head of the MSDS program at Southern Methodist University, reached out to us to try and determine which kind of people are procrastinating and where are they coming from?  To start, we conducted a multi-nation survey to determing the procrastination level of 4264 individuals by giving them 3 procrastination questionnaires the Decisional Procrastination Scale, the AIP, and the General Procrastination Scale.  Along with these measures of procrastination, we asked all participants to rate both how much they view themselves as a procrastinator and how much they feel others think they procrastinate. We also collected general information about the participants, such as their age, size of family, education level, and other demographic information. After we collected all of this information, we realized that we received a very diverse group of participants in terms of where they are from. We decided that we wanted to see if there was a relationship between country of residence and procrastination level. One way of doing this is looking at the Human Development Index (HDI) for the countries included in the survey. To get this data, we scraped the HDI information from Wikipedia (https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries). Along with the indexes, we also added the category of HDI (Low, Medium, High, or Very High) for each country into our original data set.  
+  
 Now, with our new, complete data set, we discussed with Dr. Engels what information he was looking to get out of analysis, so we generated the following questions to start with:  
-Some of our main questions include the following:
 * What are the top 15 nations in average procrastination scores? (In terms of DP, AIP, and GP)  
 * How many nations, if any, show up in both of these categories?  
 * Is there a relationship between Age and Income?  If so, what are some potential reasons for this?  
@@ -33,12 +30,30 @@ References:
 * `Checklist.txt`: a general outline of how we split up the tasks  
 
 Analysis:  
+* `.RHistory`:  
+* `Analysis.R`: contains the coe used for analysis  
+* `Codebook_Procrastination`: contains the variable information for our main analysis 
 * `MakeFile1.R`: the code we used to scrape more information from the web  
 * `MakeFile2.R`: the code we used to merge and clean our data in order to make it tidy and ready for analysis  
-* `Data`: a folder with the data used for analysis  
+* `Data`: a folder with the data sets used
 
 Data:  
-* `Procrastination.csv`: the raw data (no XML)  
-* `Procrastination2.csv`: the tidied data (with XML)  
+* `.DS_Store`:  
+* `.Rhistory`:  
+* `HumanDevelopmentIndex.csv`:  contains information regarding the Human Development Index (HDI)
+* `Procrastination.csv`: the raw data  
+* `Procrastination2.csv`: the tidied data (including HDI information)  
 
+## References  
+Knezevic, Milana. "Procrastination: a student's worst enemy?", theguardian.com. 2012. https://www.theguardian.com/education/mortarboard/2012/may/09/students-procrastinating-exams.  
+
+### Contact Information  
+
+Casey Martinez:
+* Phone:  
+* E-mail:  
+
+Lizzy Sterling:  
+* Phone: 864-704-5739  
+* E-mail: lsterling@smu.edu  
 

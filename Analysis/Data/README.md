@@ -1,6 +1,19 @@
 # Raw Data 
 This folder contains both the raw data and the relevant graphs associated with our analysis.  
 
+## Delete .DS_Store  
+
+## .Rhistory  
+Do we need to keep this file? Or is it okay to just have it included in the RMarkDown?  
+
+## HumanDevelopmentIndex.csv  
+This data set contains information regarding the Human Development Index. 
+For more information on this index and the data collection, here is the original link https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries.  
+Column Descriptions:  
+* `Country`: contains a list of all of the countries used in the data set 
+* `HDI`: a combined statistic of a country's lifespan, education level, and GDP per capita. A higher HDI score indicates scoring high on each of these levels. It is scored on a level of 0-1. 
+* `Category`: consists of Low, Medium, High, and Very High, which correspond to HDI score per country
+
 ## Procrastination.csv  
 `Procrastination.csv` contains the raw, untouched data that we cleaned and ended up using for to answer our key questions that can be found in the README.md in the base repository.  
 Below is a brief description of each column:  
@@ -79,14 +92,8 @@ Below is a brief description of each column:
 * `GPMean`: contains the means of all of the answers from the General Procrastination Scale  
 * `SWLSMean`: contains the means of all of the answers from the Satisfaction with Life Scale  
 
-## HumanDevelopmentIndex.csv  
-This data set contains information regarding the Human Development Index. 
-For more information on this index and the data collection, here is the original link https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index#Complete_list_of_countries.  
-Column Descriptions:  
-* `Country`: contains a list of all of the countries used in the data set 
-* `HDI`: a combined statistic of a country's lifespan, education level, and GDP per capita. A higher HDI score indicates scoring high on each of these levels. It is scored on a level of 0-1. 
-* `Category`: consists of Low, Medium, High, and Very High, which correspond to HDI score per country
 ## Procrastination2.csv  
-This data set contains the cleaned and merged version of the above two data sets. Reference their column names for further information. 
+This data set contains the cleaned and merged version of the above two data sets. Reference their column names for further information.   
+This is the data set we used for the majority of our analysis.  
 
 

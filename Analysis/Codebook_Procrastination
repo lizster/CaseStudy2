@@ -1,8 +1,8 @@
-`Procrastination`: contains the data set `Procrastination.csv`  
-`dim`: contains the dimensions of `Procrastination`  
+`Procrastination`: contains the data set `Procrastination.csv`. We had to change the variable names to make it more human-readable.   
+`dim`: contains the dimensions of `Procrastination` so that we know how many observations we have    
 
-`OccupationYears`: contains the unique values of the corresponding column  
-`NumberSons`: contains the unique values of the corresponding column  
+`OccupationYears`: contains the unique values of the corresponding column. We found that there was an extreme value in this column, so we changed it to a NA value so that it would not efect analysis.  
+`NumberSons`: contains the unique values of the corresponding column. We found that there were some entries that were `Male` and `Female`, so we changed them to 0 and 1 so that the values can be changed to numeric.    
 
 `df1`,`df2`: data frames with information regarding Very High Human Development Index  
 `df3`,`df4`: data frames with information regarding High Human Development Index  
