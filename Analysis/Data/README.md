@@ -1,6 +1,4 @@
 # Raw Data 
-## Delete .DS_Store  
-
 ## .Rhistory  
 Contains the raw code for our data
 
